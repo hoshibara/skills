@@ -34,7 +34,33 @@ After user confirms or provides edits, generate concise English weekly report.
 
 Along with the English final version, also generate a shorter manager scan version for quick reading.
 
-### Step 4 -- Concise Version (Optional)
+### Step 4 -- Data Tables (Optional)
+
+When notes contain quantitative results (performance numbers, kernel counts, before/after comparisons), append a compact markdown table as a "Data Appendix" section after Risk / Dependency.
+
+Rules:
+- Only include when there are concrete numbers worth comparing (e.g. latency, kernel count, speedup)
+- Keep table compact: 3-6 rows max, only columns that matter
+- Use aligned columns and consistent units (ms, µs, ×)
+- Table title should be a single descriptive line
+- Do not duplicate prose already in the bullets; the table supplements, not replaces
+- If no quantitative data in the notes, skip this section entirely
+- Include in all versions (Chinese draft, English final, manager report) when present
+
+Example:
+
+```
+Data Appendix
+
+MXFP8 quant kernel performance (M=1024, BMG B60):
+
+| Model | Compiled (ms) | Handwritten C (ms) | Speedup |
+|---|---|---|---|
+| Llama-3.1 K=8192 | 0.149 | 0.344 | 2.3× |
+| Llama-4 K=5120 | 0.106 | 0.208 | 2.0× |
+```
+
+### Step 5 -- Concise Version (Optional)
 
 If requested, further compress either final output.
 
@@ -129,6 +155,7 @@ Rules:
 - Prefer 1-2 high-impact bullets under Last Week Delivery
 - Mention technical details only when they explain unblock, risk, or impact
 - Prefer grouped conclusions over implementation-level task lists
+- Include Data Appendix table when present (same table as final version)
 
 ## Formatting Rules
 
@@ -239,10 +266,11 @@ Examples: Depend on validation team / Simulator is slow or unstable / Upstream r
 
 ## Preferred Length
 
-- Chinese draft: 8-16 lines total
-- English final version: 8-16 lines total
-- Manager report version: 6-10 lines total
+- Chinese draft: 8-16 lines total (excluding data table)
+- English final version: 8-16 lines total (excluding data table)
+- Manager report version: 6-10 lines total (no data table)
 - Extreme concise: keep only highest-impact items
+- Data table (when present): 3-6 rows, compact columns, included in all versions
 
 ## Example
 
